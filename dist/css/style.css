@@ -471,7 +471,7 @@ li + li {
     min-height: calc(100vh - 90px);
   }
 }
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1440px) {
   .s-features__content {
     min-height: calc(100vh - 135px);
   }
