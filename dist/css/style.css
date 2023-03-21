@@ -1,0 +1,634 @@
+@font-face {
+  font-family: "Proximanova";
+  src: url("../../fonts/Proximanova/proximanova-bold.eot");
+  src: url("../../fonts/Proximanova/proximanova-bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/Proximanova/proximanova-bold.woff2") format("woff2"), url("../../fonts/Proximanova/proximanova-bold.woff") format("woff"), url("../../fonts/Proximanova/proximanova-bold.ttf") format("truetype"), url("../../fonts/Proximanova/proximanova-bold.svg#proximanova-bold") format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proximanova";
+  src: url("../../fonts/Proximanova/proximanova-semibold.eot");
+  src: url("../../fonts/Proximanova/proximanova-semibold.eot?#iefix") format("embedded-opentype"), url("../../fonts/Proximanova/proximanova-semibold.woff2") format("woff2"), url("../../fonts/Proximanova/proximanova-semibold.woff") format("woff"), url("../../fonts/Proximanova/proximanova-semibold.ttf") format("truetype"), url("../../fonts/Proximanova/proximanova-semibold.svg#proximanova-semibold") format("svg");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proximanova";
+  src: url("../../fonts/Proximanova/proximanova-regular.eot");
+  src: url("../../fonts/Proximanova/proximanova-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/Proximanova/proximanova-regular.woff2") format("woff2"), url("../../fonts/Proximanova/proximanova-regular.woff") format("woff"), url("../../fonts/Proximanova/proximanova-regular.ttf") format("truetype"), url("../../fonts/Proximanova/proximanova-regular.svg#proximanova-regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/**
+ *  Global color variables.
+ *	The underscore Never use them directly in the styles, only for functions and mixins.
+ */
+/**
+ *  Organize color variables in a Sass Map.
+ *  This way, the colors can be iterated, are more organized, and are more intuitive to reference.
+ */
+/* ==========================================================================
+   Config settings
+   ========================================================================== */
+/** =====================================================================================
+ *  Defines the typographic baseline.
+ *  We define every size in pixels, the underlying system converts the
+ *  respective units to the responsive REM value.
+ ===================================================================================== */
+/**
+ * Our base font-size and line-height
+ */
+/**
+ *	Here we assign short names for the font families
+ */
+/* ==========================================================================
+ * Font related functions
+ * ========================================================================== */
+/**
+ *  Calculate line-height ratio from font-size and line-height in px value
+ */
+/**
+ *  Mixin for setting font-size in REM through a Sass Map with all available sizes
+
+    USAGE:
+
+    .myClass {
+        @include font-size(x-large);
+    }
+
+ */
+/**
+ *	A simple function for accessing the font families from our mapping
+
+	USAGE:
+
+	span {
+		@include font-family(primary);
+	}
+
+ */
+/**
+ *  Font mixin for setting font-size, font-weight, and line-height
+
+    USAGE:
+
+    .myClass {
+        @include font(x-large, 34, 500);
+    }
+
+    .myClass {
+      @include font(medium, $weight: 300);
+    }
+
+ */
+/* Media query mixin for writing Mobile First
+ * ========================================== */
+/** =====================================================================================
+ *  Toolbox functions
+ ===================================================================================== */
+/**
+ *  Maths helpers.
+ *  Halve and double numbers, returning rounded integers.
+
+    USAGE:
+
+    .foo {
+        padding: halve(30px);
+    }
+
+ */
+/**
+ *  Remove the unit of a length
+ *  @param {Number} $number - Number to remove unit from
+ *  @return {Number} - Unitless number
+ */
+/* Check if value is number */
+/* Value to Em */
+/* Value to Rem */
+/**
+ *	A simple function for accessing the colors from our mapping
+ *	To access colors in our palette, we use a very simple custom Sass function
+
+	USAGE:
+
+	a {
+		color: palette(primary);
+
+		&:hover {
+			color: palette(primary, 400);
+		}
+	}
+
+ */
+/**
+ *	A simple function for setting a consistent box-shadow
+
+	USAGE:
+
+	.card {
+		@include box-shadow();
+	}
+
+	.card--alt {
+		@include box-shadow(low);
+	}
+
+ */
+/**
+ *	A simple function for setting a consistent border-radius
+
+	USAGE:
+
+	.card {
+		@include border-radius;
+	}
+
+	.card--alt {
+		@include border-radius(large);
+	}
+
+ */
+/**
+ * Lobotomized Owl Selector mixin:
+ * - Set spacing for consecutive items with margin-top on all but the first item
+
+	USAGE:
+
+	.box {
+		@include owl-children;
+	}
+
+	.card__item {
+		@include owl;
+	}
+
+ */
+/**
+ *  Show hyphens for every browser supporting it
+ *  and will break lines in every other browser
+ */
+/*
+ *  Restrict an element to a max-width for creating gutters on the side
+ */
+/* ==========================================================================
+ * Basic elements (no class selectors allowed)
+ * ========================================================================== */
+/**
+ * Set up the html
+ *
+ * 1. Makes sure that some fonts are better rendered
+ * 2. Set font to lining figures
+ */
+html {
+  /*  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "lnum";*/
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.625rem;
+  line-height: 1;
+  font-family: "Proximanova", sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+}
+body .container {
+  max-width: 1240px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1440px) {
+  body .container {
+    max-width: 1720px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  body .container {
+    max-width: 80vw;
+  }
+}
+
+/**
+ * [1] Make sure elements like input and textarea inherit some base properties
+ *     https://www.smashingmagazine.com/2016/11/css-inheritance-cascade-global-scope-new-old-worst-best-friends/
+ *
+ * [2] Setting box-sizing the best way per:
+ *     https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+* {
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/**
+ * [1] Turn off text-shadow when selecting text for better readability
+ */
+/* Remove default margin around figure
+ */
+figure {
+  margin: 0;
+}
+
+/**
+ * [1] Setting 'vertical-align' removes the whitespace that appears under 'img'
+ *	   elements when they are dropped into a page as-is. Safer alternative to
+ *	   using 'display: block;'.
+ * [2] Remove border / especially on older browsers
+ */
+img, svg {
+  display: block;
+  vertical-align: middle; /*[1]*/
+  border: none; /*[2]*/
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, hgroup,
+ul, ol, dd, figure,
+pre, table, fieldset, hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  font-family: "Proximanova", sans-serif;
+  margin: 0;
+}
+p + p {
+  margin-top: 16px;
+}
+
+/** =====================================================================================
+ *  Lists
+ ===================================================================================== */
+/**
+ *	Default indentation value for lists
+ */
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  margin-left: 0;
+}
+
+dd {
+  margin-left: 0;
+}
+
+/**
+ *	Remove extra vertical spacing when nesting lists.
+ */
+li {
+  list-style-type: none;
+}
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+*	list-items needs resetting for our Lobotomized Owl selector
+*/
+li + li {
+  margin-top: 0;
+}
+
+.c-title__section {
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #ffffff;
+}
+@media screen and (min-width: 768px) {
+  .c-title__section {
+    font-size: 3.125rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+}
+
+.c-text {
+  font-size: 1.125rem;
+  line-height: 1.3333333333;
+  font-weight: 400;
+  color: #ffffff;
+}
+@media screen and (min-width: 768px) {
+  .c-text {
+    font-size: 1.875rem;
+    line-height: 1.2666666667;
+    font-weight: 400;
+  }
+}
+
+.c-badge {
+  display: inline-block;
+  padding: 14px 12px;
+  font-size: 1.125rem;
+  line-height: 1.2222222222;
+  font-weight: 600;
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: #19283E;
+}
+@media screen and (min-width: 1200px) {
+  .c-badge {
+    font-size: 1.625rem;
+    line-height: 1.1538461538;
+    font-weight: 600;
+  }
+}
+
+.c-qrcode {
+  width: 60%;
+  max-width: 460px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+@media screen and (min-width: 768px) {
+  .c-qrcode {
+    border-radius: 32px;
+    width: 100%;
+  }
+}
+
+.c-qrcode__img {
+  display: block;
+  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.s-features {
+  position: relative;
+  padding-top: 40px;
+  background-color: #060C13;
+  min-height: 100vh;
+  overflow: hidden;
+}
+@media screen and (min-width: 768px) {
+  .s-features {
+    padding-top: 60px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .s-features {
+    padding-top: 90px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .s-features {
+    padding-top: 135px;
+  }
+}
+.s-features .container {
+  min-height: calc(100vh - 40px);
+}
+@media screen and (min-width: 768px) {
+  .s-features .container {
+    min-height: calc(100vh - 60px);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .s-features .container {
+    min-height: calc(100vh - 90px);
+  }
+}
+@media screen and (min-width: 1920px) {
+  .s-features .container {
+    min-height: calc(100vh - 135px);
+  }
+}
+
+.s-features__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+}
+.s-features__bg img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.s-features__content {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 40px);
+}
+@media screen and (min-width: 768px) {
+  .s-features__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: calc(100vh - 60px);
+    gap: 36px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .s-features__content {
+    min-height: calc(100vh - 90px);
+  }
+}
+@media screen and (min-width: 1920px) {
+  .s-features__content {
+    min-height: calc(100vh - 135px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .s-features__item {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 0%;
+            flex: 1 1 0%;
+  }
+}
+.s-features__item .c-badge {
+  margin-bottom: 22px;
+}
+.s-features__item .c-title__section {
+  margin-bottom: 8px;
+}
+
+.s-features__item--phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.s-features__logo {
+  display: inline-block;
+  max-width: 302px;
+  height: auto;
+}
+
+.s-features__info {
+  padding: 50px 0;
+}
+@media screen and (min-width: 768px) {
+  .s-features__info {
+    padding: 32px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
+  }
+}
+
+.s-features__block + .s-features__block {
+  margin-top: 40px;
+}
+@media screen and (min-width: 768px) {
+  .s-features__block + .s-features__block {
+    margin-top: 70px;
+  }
+}
+
+.s-features__phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 774px;
+  position: relative;
+  padding: 120px 40px 40px;
+  height: 100%;
+  max-height: 1550px;
+}
+@media screen and (min-width: 768px) {
+  .s-features__phone {
+    padding: 120px 60px 60px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .s-features__phone {
+    padding: 120px 90px 60px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .s-features__phone {
+    padding: 120px 150px 60px;
+  }
+}
+.s-features__phone .c-qrcode {
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .s-features__phone .c-qrcode {
+    margin-bottom: 64px;
+  }
+}
+
+.s-features__phone--empty {
+  width: 100%;
+  min-height: 50vh;
+  height: 100%;
+}
+
+.s-features__phone-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  z-index: -1;
+}
+@media screen and (min-height: 1440px) {
+  .s-features__phone-bg {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+.s-features__phone-bg img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.s-features__download {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 18px;
+}
+@media screen and (min-width: 768px) {
+  .s-features__download {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.s-features__download-btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0%;
+          flex: 1 1 0%;
+  overflow: hidden;
+  border-radius: 4px;
+}
